@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link data-trunk rel="css" href="style/output.css" /> -->
+    <link data-trunk href="./tailwind.css" rel="css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/easymde/dist/easymde.min.css"
+    />
+    <script src="https://unpkg.com/easymde/dist/easymde.min.js"></script>
+    <title>Document</title>
+  </head>
+  <textarea id="editor" class="w-full h-80"></textarea>
+  <body></body>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const editor = new EasyMDE({
+        element: document.getElementById("editor"),
+        spellChecker: false,
+      });
+
+      // ดึงค่า markdown จาก editor
+      window.getMarkdownValue = function () {
+        return editor.value();
+      };
+      console.log(window.getMarkdownValue);
+    });
+  </script>
+</html>
