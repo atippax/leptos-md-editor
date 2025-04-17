@@ -28,7 +28,7 @@ fn App() -> impl IntoView {
                             let content = result.as_string().unwrap_or_default();
                             let file_name = result_file.as_string().unwrap_or("untitled".to_string());
                             let path = format!("src/content/blog/{}.md", file_name);
-    
+    s
                             console::log_1(&format!("Saving {}...", &path).into());
     
                             wasm_bindgen_futures::spawn_local(async move {
