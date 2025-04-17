@@ -1,13 +1,14 @@
 use base64::{Engine, engine::general_purpose};
 use reqwest::Client;
 use serde_json::json;
+use web_sys::console::log_1;
 use std::env;
 
 pub async fn push_to_github(path: &str, content: &str) -> Result<(), Box<dyn std::error::Error>> {
     let token = env::var("GITHUB_TOKEN")?;
+    log_1(&format!("t {}" , token).into());
     let repo = env::var("GITHUB_REPO")?;
     let branch = env::var("GITHUB_BRANCH")?;
-
     let api_url = format!("https://api.github.com/repos/{}/contents/{}", repo, path);
     let encoded = general_purpose::STANDARD.encode(content);
     let client = Client::new();
