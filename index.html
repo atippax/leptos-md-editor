@@ -13,19 +13,27 @@
     <title>Document</title>
   </head>
   <textarea id="editor" class="w-full h-80"></textarea>
-  <body></body>
+  <body>
+    <input type="text" id="fileName" />
+  </body>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const editor = new EasyMDE({
         element: document.getElementById("editor"),
         spellChecker: false,
       });
-
+      window.getFilename = () => {
+        const element = document.getElementById("fileName");
+        return element.value;
+      };
       // ดึงค่า markdown จาก editor
       window.getMarkdownValue = function () {
         return editor.value();
       };
       console.log(window.getMarkdownValue);
+      setTimeout(() => {
+        console.log(window.getFilename());
+      }, 10000);
     });
   </script>
 </html>

@@ -4,19 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- <link data-trunk rel="css" href="style/output.css" /> -->
-    <link rel="stylesheet" href="/tailwind-b0a79e45d3ef6d36.css" integrity="sha384-vdHYAYdI/Ny5TEiM/EjuwCGkI82UjI1/TAPhBb+/EB9pcU4Da4vkZfZ2fsPqgBgs"/>
+    <link rel="stylesheet" href="/tailwind-4de05587181034c3.css" integrity="sha384-r8uLOKIgt/Lzy0hEOI6O92zVj/vPIlMJp2iJBkBJ3QDe0WRzR2bdWxlN+a/OaL0K"/>
     <link
       rel="stylesheet"
       href="https://unpkg.com/easymde/dist/easymde.min.css"
     />
     <script src="https://unpkg.com/easymde/dist/easymde.min.js"></script>
     <title>Document</title>
-  <link rel="modulepreload" href="/leptos-md-editor-976ead30f642beaf.js" crossorigin="anonymous" integrity="sha384-u82rxDHr108W85NZ/OfA5jpwxxvieFp35z7ZdCm609FeJlocWXeLnT5eAs6ou4W/"><link rel="preload" href="/leptos-md-editor-976ead30f642beaf_bg.wasm" crossorigin="anonymous" integrity="sha384-g31YSTl80sSje2cLe2Z9LZlJQIOCdheuQeO+ptqDWRwJfa0yClWCgf3tZgKxSr3P" as="fetch" type="application/wasm"></head>
+  <link rel="modulepreload" href="/leptos-md-editor-a50b21cb3d97a262.js" crossorigin="anonymous" integrity="sha384-GcTpwtzPCAHUqqSO+1DcfhJwilz/0u8ZguEmAvOAyokOY1mlXBOwyOm7t3QJ3U54"><link rel="preload" href="/leptos-md-editor-a50b21cb3d97a262_bg.wasm" crossorigin="anonymous" integrity="sha384-qMdQB+NsW0uMXAkZHlIk2ihq0VbGXkmffAdQZoFWr05sMYKWseL3eLknIKBp6r3R" as="fetch" type="application/wasm"></head>
   <textarea id="editor" class="w-full h-80"></textarea>
   <body>
+    <input type="text" id="fileName" />
+  
 <script type="module">
-import init, * as bindings from '/leptos-md-editor-976ead30f642beaf.js';
-const wasm = await init({ module_or_path: '/leptos-md-editor-976ead30f642beaf_bg.wasm' });
+import init, * as bindings from '/leptos-md-editor-a50b21cb3d97a262.js';
+const wasm = await init({ module_or_path: '/leptos-md-editor-a50b21cb3d97a262_bg.wasm' });
 
 
 window.wasmBindings = bindings;
@@ -160,12 +162,18 @@ dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
         element: document.getElementById("editor"),
         spellChecker: false,
       });
-
+      window.getFilename = () => {
+        const element = document.getElementById("fileName");
+        return element.value;
+      };
       // ดึงค่า markdown จาก editor
       window.getMarkdownValue = function () {
         return editor.value();
       };
       console.log(window.getMarkdownValue);
+      setTimeout(() => {
+        console.log(window.getFilename());
+      }, 10000);
     });
   </script>
 </html>
