@@ -13,7 +13,8 @@ fn App() -> impl IntoView {
         if let Some(win) = window() {
             let val = js_sys::Reflect::get(&win, &"getMarkdownValue".into()).ok();
             let text_field = js_sys::Reflect::get(&win, &"getFilename".into()).ok();
-    
+            let token = std::env::var("GITHUB_TOKEN").unwrap();
+            console::log_1(&format!("t {}" , token).into());
             if let (Some(val), Some(text_field)) = (val, text_field) {
                 if val.is_function() && text_field.is_function() {
                     let func = val.dyn_into::<Function>().ok();
