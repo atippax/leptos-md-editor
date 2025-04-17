@@ -39,7 +39,5 @@ jobs:
 
       - name: Deploy to Vercel & Display URL
         id: deployment
-        working-directory: ./dist
         run: |
-          vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }} >> $GITHUB_STEP_SUMMARY
-          echo $GITHUB_STEP_SUMMARY
+          vercel deploy ./dist --prod --token=${{ secrets.VERCEL_TOKEN }} >> $GITHUB_STEP_SUMMARY
