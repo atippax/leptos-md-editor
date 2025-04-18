@@ -7,7 +7,7 @@ use std::env;
 pub async fn push_to_github(path: &str, content: &str) -> Result<(), Box<dyn std::error::Error>> {
     let token = option_env!("GITHUB_TOKEN").unwrap_or("unfound env".into());
     log_1(&format!("t {}" , token).into());
-    let repo ="about-me";
+    let repo ="atippax/about-me";
     let branch ="main";
     let api_url = format!("https://api.github.com/repos/{}/contents/{}", repo, path);
     let encoded = general_purpose::STANDARD.encode(content);
